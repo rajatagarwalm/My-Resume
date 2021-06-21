@@ -212,7 +212,7 @@ h1, h2, h3, h4, h5, h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("../img/background.jpg") top center;
+  background: url("https://createawebsiteguide.files.wordpress.com/2010/10/websitebuilderbackground1.png?w=300") top center;
   background-size: cover;
 }
 
@@ -582,6 +582,67 @@ section {
 .portfolio .portfolio-wrap:hover .portfolio-links {
   opacity: 1;
   bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Certificate
+--------------------------------------------------------------*/
+
+.certificatecolumn {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+.certificatecolumn img{
+  border: 5px solid rgb(126, 128, 126);
+}
+
+.certificaterow::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media screen and (max-width: 500px) {
+  .certificatecolumn {
+    width: 100%;
+  }
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.certificatecolumn:hover .image {
+  opacity: 0.3;
+}
+
+.certificatecolumn:hover .middle {
+  opacity: 1;
+}
+
+.text {
+  background-color: #04AA6D;
+  color: white;
+  font-size: 16px;
+  padding: 16px 16px;
 }
 
 /*--------------------------------------------------------------
@@ -1075,3 +1136,5 @@ section {
     padding-right: 20px 15px;
   }
 }
+
+
