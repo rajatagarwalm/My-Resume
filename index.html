@@ -506,9 +506,17 @@
         message: message
       }).then(function () {
         console.log("Form data stored successfully.");
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("subject").value = "";
+        document.getElementById("message").value = "";
         alert("Message sent successfully")
       }).catch(function (error) {
         console.error("Error storing form data:", error);
+        document.getElementById("name").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("subject").value = "";
+        document.getElementById("message").value = "";
         alert("Error in sending a message")
       });
     }
