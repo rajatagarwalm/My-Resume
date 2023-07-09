@@ -389,13 +389,10 @@
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
-
         <div class="section-title">
           <h2>Contact</h2>
         </div>
-
         <div class="row" data-aos="fade-in">
-
           <div class="col-lg-5 d-flex align-items-stretch" data-aos="fade-right" data-aos-delay="100">
             <div class="info">
               <div class="address">
@@ -422,7 +419,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-left" data-aos-delay="200">
-            <form method="post" role="form" class="php-email-form">
+            <form method="post" role="form" class="php-email-form" onsubmit="submitForm(event)">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
@@ -446,11 +443,13 @@
               <div class="form-group">
                 <label for="name">Message</label>
                 <textarea class="form-control" name="message" rows="10" data-rule="required"
-                  data-msg="Please write something for us"></textarea>
+                  data-msg="Please write something for us" id="message"></textarea>
                 <div class="validate"></div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
+            <div id="success-message" style="display: none;">Message sent successfully.</div>
+            <div id="error-message" style="display: none;">Error sending message. Please try again later.</div>
           </div>
         </div>
       </div>
@@ -480,6 +479,42 @@
   <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
   <script src="assets/vendor/typed.js/typed.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAdQN6bOa2tcJomeNMg3yTSgDVKlhIpfz4",
+      authDomain: "my-resume-79ae9.firebaseapp.com",
+      databaseURL: "https://my-resume-79ae9-default-rtdb.firebaseio.com",
+      projectId: "my-resume-79ae9",
+      storageBucket: "my-resume-79ae9.appspot.com",
+      messagingSenderId: "711613898611",
+      appId: "1:711613898611:web:77157e8332f346338f6f06",
+      measurementId: "G-RY0H2QDT4F"
+    };
+    firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
+    function submitForm(event) {
+      event.preventDefault();
+
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var subject = document.getElementById("subject").value;
+      var message = document.getElementById("message").value;
+      database.ref("contacts").push().set({
+        name: name,
+        email: email,
+        subject: subject,
+        message: message
+      }).then(function () {
+        console.log("Form data stored successfully.");
+        alert("Message sent successfully")
+      }).catch(function (error) {
+        console.error("Error storing form data:", error);
+        alert("Error in sending a message")
+      });
+    }
+  </script>
 
   <script src="assets/js/main.js"></script>
 
